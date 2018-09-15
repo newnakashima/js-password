@@ -8,8 +8,8 @@ const CODE = {
 
 class Password {
     constructor(min = 12, max = 16, cap = 1, sign = 1, num = 1) {
-        this.min = min;
-        this.max = max;
+        this.min  = min;
+        this.max  = max;
         this.cap  = cap;
         this.sign = sign;
         this.num  = num;
@@ -29,9 +29,9 @@ class Password {
         const alpha_length = this.length - (this.cap + this.sign + this.num);
         try {
             const alpha_letters = this.create_letters(alpha_length, () => this.alpha_char());
-            const cap_letters = this.create_letters(this.cap, () => this.cap_char());
-            const sign_letters = this.create_letters(this.sign, () => this.sign_char());
-            const num_letters = this.create_letters(this.num, () => this.num_char());
+            const cap_letters   = this.create_letters(this.cap,     () => this.cap_char());
+            const sign_letters  = this.create_letters(this.sign,    () => this.sign_char());
+            const num_letters   = this.create_letters(this.num,     () => this.num_char());
             const cat = alpha_letters.concat(cap_letters, sign_letters, num_letters);
             const shuffled = n.array_shuffle(cat);
             return {
@@ -40,8 +40,7 @@ class Password {
                 success: true
             };
         } catch (e) {
-            console.error('failed');
-            // return "gen failed";
+            console.error(e);
             return {
                 length:  -1,
                 text:    '<span style="color:red">パスワードの生成に失敗しました。最小文字数か最大文字数が小さすぎる可能性があります。</span>',
@@ -73,10 +72,10 @@ class Password {
             {start: 91,  end:   96 },
             {start: 123, end:   126}
         ];
-        let signs = ["<"];
+        let signs = [];
         parts.forEach(e => {
             for(let i = e.start; i <= e.end; i++) {
-                // signs.push(String.fromCharCode(i));
+                signs.push(String.fromCharCode(i));
             }
         });
         let picked = signs[this.random_index({start: 0, end: signs.length - 1})];

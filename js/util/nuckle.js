@@ -27,7 +27,6 @@ var n = {
     },
     array_shuffle: function (input_array) {
         let result = input_array.sort(() => Math.random() - 0.5);
-        console.log(result);
         return result;
     }
 };
