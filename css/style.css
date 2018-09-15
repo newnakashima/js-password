@@ -1,0 +1,49 @@
+html,body {
+    margin: 0;
+    padding: 0;
+}
+#content {
+    width: 80%;
+    margin: auto;
+}
+
+header h1 {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+section#inputs {
+    text-align: center;
+}
+section#inputs label {
+    display: inline-block;
+    width: 40%;
+    text-align: left;
+}
+
+section#password-display * {
+    text-align: center;
+}
+section#password-display ul {
+    padding: 0;
+}
+section#password-display li {
+    border: 1px black solid;
+    margin-top: -1px;
+    word-wrap: break-word;
+    list-style-type: none;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 800px) {
+    #content {
+        width: 40%;
+    }
+    #content div {
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+}
