@@ -12,7 +12,7 @@ var n = {
         }
 
         if (max < min) {
-            throw new Error('max must be larger than min');
+            throw new Error(`max must be larger than min. max = ${max}, min = ${min}`);
         }
 
         let range = [];

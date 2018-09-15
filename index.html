@@ -5,7 +5,37 @@
   <title>パスワード生成</title>
 </head>
 <body>
-  <p id="gened-pass">A new password will be generated here...</p>
-  <script src="js/genpass.js"></script>
+  <div id="content">
+    <section id="inputs">
+      <button type="button" id="generate-button">GENERATE</button>
+      <button type="button" id="erase-button">CLEAR</button>
+      <div>
+        <label for="min-length">最小文字数</label>
+        <input type="number" id="min-length" min="4">
+      </div>
+      <div>
+        <label for="max-length">最大文字数</label>
+        <input type="number" id="max-length" min="4">
+      </div>
+      <div>
+        <label for="cap-length">英大文字の文字数</label>
+        <input type="number" id="cap-length" min="0">
+      </div>
+      <div>
+        <label for="sign-length">記号の文字数</label>
+        <input type="number" id="sign-length" min="0">
+      </div>
+      <div>
+        <label for="">数字の文字数</label>
+        <input type="number" id="number-length" min="0">
+      </div>
+    </section>
+    <section id="password-display">
+      <p id="gened-pass">A new password will be generated below...</p>
+      <ul id="generated-list">
+      </ul>
+    </section>
+  </div>
+  <script src="js/main.js"></script>
 </body>
 </html>
