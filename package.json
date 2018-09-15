@@ -1,0 +1,30 @@
+{
+  "name": "js-password",
+  "version": "1.0.0",
+  "description": "クライアントサイドでパスワードを生成します",
+  "main": "genpass.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newnakashima/js-password.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "Password",
+    "Generator"
+  ],
+  "author": "newnakashima",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/newnakashima/js-password/issues"
+  },
+  "homepage": "https://github.com/newnakashima/js-password#readme",
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  },
+  "dependencies": {
+    "util": "^0.11.0"
+  }
+}

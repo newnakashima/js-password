@@ -1,4 +1,4 @@
-module.exports = {
+var n = {
     /**
      * method
      * @param {Number} max Max value of the range.
@@ -31,4 +31,5 @@ module.exports = {
         }
     }
 };
+export default n;
 

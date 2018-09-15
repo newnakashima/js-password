@@ -1,4 +1,4 @@
-var n = require("./util/nuckle.js");
+import n from './util/nuckle';
 
 const CODE = {
     ALPHA_START: 97,
@@ -29,7 +29,7 @@ class Password {
         const alpha_letters = this.create_alpha_letters(alpha_length);
         const cap_letters = this.create_cap_letters(this.cap);
         const shuffled = n.array_shuffle(alpha_letters.concat(cap_letters));
-        console.log(shuffled.join(''));
+        return shuffled.join('');
     }
 
     create_alpha_letters(length) {
@@ -55,4 +55,4 @@ class Password {
 }
 
 let p = new Password();
-p.gen();
+document.querySelector('#gened-pass').innerText = p.gen();
