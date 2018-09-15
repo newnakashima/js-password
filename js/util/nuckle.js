@@ -7,6 +7,10 @@ var n = {
      * @return {Array<Number>} Number Array of range stepped by step.
      */
     range: function (max, min = 1, step = 1) {
+        if (max == 0) {
+            return [];
+        }
+
         if (max == min) {
             return [max];
         }
@@ -22,13 +26,8 @@ var n = {
         return range;
     },
     array_shuffle: function (input_array) {
-        for (let i = input_array.length - 1; i > 0; i--) {
-            let r = Math.floor(Math.random() * (i + 1));
-            let tmp = input_array[i];
-            input_array[i] = input_array[r];
-            input_array[r] = tmp;
-            return input_array;
-        }
+        let result = input_array.sort(() => Math.random() - 0.5);
+        return result;
     }
 };
 export default n;
