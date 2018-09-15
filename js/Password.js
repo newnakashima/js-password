@@ -2,7 +2,7 @@ import n from './util/nuckle';
 
 const CODE = {
     ALPHA: {start: 97, end: 122},
-    CAP:   {start: 65, end:  92},
+    CAP:   {start: 65, end:  90},
     NUM:   {start: 48, end:  57}
 }
 
