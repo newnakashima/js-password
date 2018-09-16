@@ -11,3 +11,11 @@ $ parcel index.html
 ```
 
 ブラウザで、`http://localhost:1234`へアクセスします。
+
+## test
+
+```sh
+$ parcel tests/index.html
+```
+
+その後ブラウザで`http://localhost:1234`へアクセスします。
