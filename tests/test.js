@@ -1,4 +1,4 @@
-import TestPassword from './TestPassword.js';
+let TestPassword = require('./TestPassword.js');
 let tests = [TestPassword];
 tests.forEach(t => {
     let methods = Object.getOwnPropertyNames(t.prototype);

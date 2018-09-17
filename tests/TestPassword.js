@@ -1,5 +1,4 @@
-import TestCase from './TestCase.js';
-import Password from '../js/Password.js';
+var TestCase = require('./TestCase.js');
 class TestPassword extends TestCase {
     testGen() {
         const test_cases = this.genTestCases();
@@ -10,6 +9,7 @@ class TestPassword extends TestCase {
     }
 
     genTestCases() {
+        this.loadClass('../js/Password.js');
         return [
             {
                 password: new Password(8, 8, 0, 0, 0),
