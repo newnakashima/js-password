@@ -6,5 +6,11 @@ tests.forEach(t => {
         return /^test.*/.test(method);
     });
     var test = new t();
-    test_methods.forEach(test_method => test[test_method]());
+    test.before(t.name);
+    test_methods.forEach(test_method => {
+        test.setUp();
+        test[test_method]()
+        test.tearDown();
+    });
+    test.after(t.name);
 });
