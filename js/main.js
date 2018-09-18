@@ -1,4 +1,4 @@
-import Password from './Password.js';
+var Password = require('./Password.js');
 
 let p = new Password();
 

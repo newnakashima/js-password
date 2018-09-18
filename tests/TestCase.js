@@ -1,56 +1,54 @@
-let fs = require('fs');
-let acorn = require('acorn');
-let escodegen = require('escodegen');
-
 class TestCase {
-    loadClass(path) {
-        const data = fs.readFileSync(path, 'utf8');
-        const ast = acorn.parse(data, {sourceType: 'module'});
-        const new_ast = this.browser2node(ast);
-        const new_code = escodegen.generate(new_ast);
-        eval(new_code);
-    }
-
-    browser2node(ast) {
-        let result = ast.body.map(exp => {
-            if (exp.type === 'ImportDeclaration') {
-                return this.import2require(exp);
-            }
-            return exp;
-        });
-        ast.body = result;
-        return ast;
-    }
-
-    import2require(exp) {
-        let var_name = exp.specifiers[0].local.name;
-        let import_path = exp.source.value;
-        let require_ast = acorn.parse(`var ${var_name} = require("${import_path}")`, {sourceType: 'module'});
-        return require_ast;
-    }
-
-    before(class_name) {
-        console.log(class_name + " test start.");
+    beforeClass(class_name) {
+        console.log(class_name);
     }
 
     setUp() {
     
     }
 
+    runTest(method) {
+        this.method_name = method;
+        this.beforeTest();
+        this[method]();
+        this.afterTest();
+    }
+
+    beforeTest() {
+        this.assertCount = 0;
+        this.failedCount = 0;
+        this.message = "";
+    }
+
     assertEquals(expected, actual) {
+        this.assertCount++;
+        this.failed = false;
         if (expected === actual) {
-            console.log(".");
+            // if assert succeeded.
         } else {
-            console.error(`Test Failed. Expected ${expected}, but actual is ${actual}.`);
+            this.failed = true;
+            this.failedCount++;
+            this.message += `\n${this.method_name} Failed. Expected ${expected}, but actual is ${actual}.`;
         }
+    }
+
+    afterTest() {
+        if (this.failed) {
+            process.stdout.write('F');
+        } else {
+            process.stdout.write('.');
+        }
+        console.log(this.message);
+        console.log(`${this.assertCount} asserts, ${this.failedCount} failed.`);
     }
 
     tearDown() {
     
     }
 
-    after(class_name) {
-        console.log(class_name + " test ended.");
+    afterClass(class_name) {
+        console.log("\n" + class_name + " ended.");
     }
 }
 module.exports = TestCase;
+

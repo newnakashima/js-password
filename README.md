@@ -15,7 +15,6 @@ $ parcel index.html
 ## test
 
 ```sh
-$ parcel tests/index.html
+$ npm test
 ```
 
-その後ブラウザで`http://localhost:1234`へアクセスします。
