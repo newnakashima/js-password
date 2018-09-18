@@ -1,4 +1,4 @@
-import n from './util/nuckle';
+let n = require('./util/nuckle');
 
 const CODE = {
     ALPHA: {start: 97, end: 122},
@@ -97,4 +97,4 @@ class Password {
         return String.fromCharCode(this.random_index(CODE.NUM));
     }
 }
-export default Password;
+module.exports = Password;

@@ -11,3 +11,10 @@ $ parcel index.html
 ```
 
 ブラウザで、`http://localhost:1234`へアクセスします。
+
+## test
+
+```sh
+$ npm test
+```
+

@@ -30,5 +30,5 @@ var n = {
         return result;
     }
 };
-export default n;
+module.exports = n;
 

@@ -4,7 +4,7 @@
   "description": "クライアントサイドでパスワードを生成します",
   "main": "genpass.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node tests/test.js",
     "start": "parcel index.html",
     "build": "parcel build"
   },
