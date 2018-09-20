@@ -28,10 +28,10 @@ class Password {
         } 
         const alpha_length = this.length - (this.cap + this.sign + this.num);
         try {
-            const alpha_letters = this.create_letters(alpha_length, () => this.alpha_char());
-            const cap_letters   = this.create_letters(this.cap,     () => this.cap_char());
-            const sign_letters  = this.create_letters(this.sign,    () => this.sign_char());
-            const num_letters   = this.create_letters(this.num,     () => this.num_char());
+            const alpha_letters = this.createLetters(alpha_length, () => this.alphaChar());
+            const cap_letters   = this.createLetters(this.cap,     () => this.capChar());
+            const sign_letters  = this.createLetters(this.sign,    () => this.signChar());
+            const num_letters   = this.createLetters(this.num,     () => this.numChar());
             const cat = alpha_letters.concat(cap_letters, sign_letters, num_letters);
             const shuffled = n.array_shuffle(cat);
             return {
@@ -49,23 +49,23 @@ class Password {
         }
     }
 
-    create_letters(length, func) {
+    createLetters(length, func) {
         return n.range(length).map(() => func());
     }
 
-    random_index(type) {
+    randomIndex(type) {
         return Math.floor(Math.random() * (type.end + 1 - type.start)) + type.start;
     }
 
-    alpha_char() {
-        return String.fromCharCode(this.random_index(CODE.ALPHA));
+    alphaChar() {
+        return String.fromCharCode(this.randomIndex(CODE.ALPHA));
     }
 
-    cap_char() {
-        return String.fromCharCode(this.random_index(CODE.CAP));
+    capChar() {
+        return String.fromCharCode(this.randomIndex(CODE.CAP));
     }
 
-    sign_char() {
+    signChar() {
         const parts = [
             {start: 33,  end:   47 },
             {start: 58,  end:   64 },
@@ -78,23 +78,26 @@ class Password {
                 signs.push(String.fromCharCode(i));
             }
         });
-        let picked = signs[this.random_index({start: 0, end: signs.length - 1})];
-        return this.escape_char(picked);
+        let picked = signs[this.randomIndex({start: 0, end: signs.length - 1})];
+        return picked;
     }
 
-    escape_char(input_char) {
+    escapeStr(input_str) {
         const escape_list = {
             "<": "&lt;",
             ">": "&gt;"
         };
-        if (input_char in escape_list) {
-            return escape_list[input_char];
-        }
-        return input_char;
+        const escaped_str = input_str.split('').map(c => {
+            if (c in escape_list) {
+                return escape_list[c];
+            }
+            return c;
+        });
+        return escaped_str.join('');
     }
 
-    num_char() {
-        return String.fromCharCode(this.random_index(CODE.NUM));
+    numChar() {
+        return String.fromCharCode(this.randomIndex(CODE.NUM));
     }
 }
 module.exports = Password;

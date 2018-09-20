@@ -33,8 +33,116 @@ class PasswordTest extends TestCase {
                     sign: 0,
                     num:  0
                 }
+            },
+            {
+                password: new Password(12, 16, 1, 1, 1),
+                expected: {
+                    min:  12,
+                    max:  16,
+                    cap:  1,
+                    sign: 1,
+                    num:  1,
+                }
+            },
+            {
+                password: new Password(16, 12, 1, 1, 1),
+                expected: {
+                    min:  16,
+                    max:  16,
+                    cap:  1,
+                    sign: 1,
+                    num:  1,
+                }
+            },
+            {
+                password: new Password(16, 12, 0, 0, 1),
+                expected: {
+                    min:  16,
+                    max:  16,
+                    cap:  0,
+                    sign: 0,
+                    num:  1,
+                }
+            
             }
         ];
+    }
+
+    testCreateLetters() {
+        const p = new Password(12, 16, 1, 1, 1);
+        const ret = p.createLetters(3, () => 100);
+        const expected = [100, 100, 100];
+        expected.forEach((e, i) => this.assertEquals(e, ret[i]));
+    }
+
+    testRandomIndex() {
+        const p = new Password(12, 16, 1, 1, 1);
+        let a = 0;
+        let b = 0;
+        let c = 0;
+        for (let i = 0; i < 3000; i++) {
+            const result = p.randomIndex({start: 1, end: 3});
+            switch (result) {
+                case 1:
+                    a++;
+                    break;
+                case 2:
+                    b++;
+                    break;
+                case 3:
+                    c++;
+                    break;
+                default:
+                    break;
+            }
+        }
+        [a, b, c].forEach(e => {
+            this.assertEquals(e < 1200 && e > 800, true);
+        });
+    }
+
+    testAlphaChar() {
+        const p = new Password(12, 16, 1, 1, 1);
+        let result = "";
+        for (var i = 0; i < 1000; i++) {
+            result += p.alphaChar();
+        }
+        this.assertEquals(/[^a-z]/.test(result), false);
+        this.assertEquals(/[a-z]/.test(result), true);
+    }
+
+    testCapChar() {
+        const p = new Password(12, 16, 1, 1, 1);
+        let result = "";
+        for (var i = 0; i < 1000; i++) {
+            result += p.capChar();
+        }
+        this.assertEquals(/[^A-Z]/.test(result), false);
+        this.assertEquals(/[A-Z]/.test(result), true);
+    
+    }
+
+    testSignChar() {
+        const p = new Password(12, 16, 1, 1, 1);
+        let result = '';
+        for (var i = 0; i < 1000; i++) {
+            result += p.signChar();
+        }
+        this.assertEquals(/[a-z]/.test(result), false);
+        this.assertEquals(/[A-Z]/.test(result), false);
+        this.assertEquals(/[0-9]/.test(result), false);
+        this.assertEquals(/[^a-zA-Z0-9]/.test(result), true);
+    }
+
+    testNumChar() {
+        const p = new Password(12, 16, 1, 1, 1);
+        let result = "";
+        for (var i = 0; i < 1000; i++) {
+            result += p.numChar();
+        }
+        this.assertEquals(/[^0-9]/.test(result), false);
+        this.assertEquals(/[0-9]/.test(result), true);
+    
     }
 }
 module.exports = PasswordTest;
