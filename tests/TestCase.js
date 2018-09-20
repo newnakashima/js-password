@@ -1,6 +1,9 @@
 class TestCase {
     beforeClass(class_name) {
-        console.log(class_name);
+        console.log(class_name + "\n");
+        this.assertCount = 0;
+        this.failedCount = 0;
+        this.message = "";
     }
 
     setUp() {
@@ -15,17 +18,17 @@ class TestCase {
     }
 
     beforeTest() {
-        this.assertCount = 0;
-        this.failedCount = 0;
-        this.message = "";
+
     }
 
     assertEquals(expected, actual) {
         this.assertCount++;
         this.failed = false;
         if (expected === actual) {
+            process.stdout.write('.');
             // if assert succeeded.
         } else {
+            process.stdout.write('F');
             this.failed = true;
             this.failedCount++;
             this.message += `\n${this.method_name} Failed. Expected ${expected}, but actual is ${actual}.`;
@@ -33,13 +36,7 @@ class TestCase {
     }
 
     afterTest() {
-        if (this.failed) {
-            process.stdout.write('F');
-        } else {
-            process.stdout.write('.');
-        }
-        console.log(this.message);
-        console.log(`${this.assertCount} asserts, ${this.failedCount} failed.`);
+
     }
 
     tearDown() {
@@ -47,6 +44,8 @@ class TestCase {
     }
 
     afterClass(class_name) {
+        console.log(this.message);
+        console.log(`${this.assertCount} asserts, ${this.failedCount} failed.`);
         console.log("\n" + class_name + " ended.");
     }
 }
