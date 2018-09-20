@@ -31,7 +31,7 @@ class PasswordTest extends TestCase {
                     max:  8,
                     cap:  0,
                     sign: 0,
-                    num:  1
+                    num:  0
                 }
             },
             {
