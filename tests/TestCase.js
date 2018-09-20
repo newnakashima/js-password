@@ -1,6 +1,7 @@
 class TestCase {
     beforeClass(class_name) {
         console.log(class_name + "\n");
+        this.failed = false;
         this.assertCount = 0;
         this.failedCount = 0;
         this.message = "";
@@ -23,7 +24,6 @@ class TestCase {
 
     assertEquals(expected, actual) {
         this.assertCount++;
-        this.failed = false;
         if (expected === actual) {
             process.stdout.write('.');
             // if assert succeeded.
