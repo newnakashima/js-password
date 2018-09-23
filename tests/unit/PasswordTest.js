@@ -1,5 +1,5 @@
-let TestCase = require('./TestCase.js');
-let Password = require('../js/Password.js');
+let TestCase = require('../TestCase.js');
+let Password = require('../../js/Password.js');
 class PasswordTest extends TestCase {
     testGen() {
         const test_cases = this.genTestCases();

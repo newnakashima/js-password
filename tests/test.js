@@ -1,6 +1,6 @@
 let TestRunner = require('./TestRunner.js');
 let tests = [
-    require('./PasswordTest.js')
+    require('./unit/PasswordTest.js')
 ];
 let runner = new TestRunner();
 runner.run(tests);
