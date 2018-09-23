@@ -6,10 +6,12 @@ const generate_button = document.getElementById('generate-button');
 generate_button.addEventListener('click', () => {
     const new_password = document.createElement('li');
     let result = p.gen();
-    new_password.innerHTML = p.escapeStr(result.text);
     if (result.success) {
         new_password.className = "password";
         new_password.addEventListener('click', password_click);
+        new_password.innerHTML = p.escapeStr(result.text);
+    } else {
+        new_password.innerHTML = `<span style="color:red">${p.escapeStr(result.text)}</span>`;
     }
     document.querySelector('#generated-list').appendChild(new_password);
 });
