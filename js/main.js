@@ -1,3 +1,5 @@
+'use strict';
+
 var Password = require('./Password.js');
 
 let p = new Password();

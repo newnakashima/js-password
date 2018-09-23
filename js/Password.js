@@ -1,3 +1,5 @@
+'use strict';
+
 let n = require('./util/nuckle');
 
 const CODE = {
