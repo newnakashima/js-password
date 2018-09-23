@@ -43,7 +43,7 @@ class Password {
             console.error(e);
             return {
                 length:  -1,
-                text:    '<span style="color:red">パスワードの生成に失敗しました。最小文字数か最大文字数が小さすぎる可能性があります。</span>',
+                text:    'パスワードの生成に失敗しました。最小文字数か最大文字数が小さすぎる可能性があります。',
                 success: false
             };
         }
