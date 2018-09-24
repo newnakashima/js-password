@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.com/newnakashima/js-password.svg?branch=master)](https://travis-ci.com/newnakashima/js-password)
 
+https://js-password.firebaseapp.com
+
+↑で使えるプログラムです。
+
 クライアントサイドのJavaScriptのみでランダムなパスワードを生成します。
 ブラウザでソースコードや外部への通信の有無を確認することができるので安全です。
 

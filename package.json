@@ -5,7 +5,7 @@
   "main": "genpass.js",
   "scripts": {
     "test": "node tests/test.js",
-    "start": "parcel build",
+    "start": "parcel start",
     "build": "parcel build"
   },
   "repository": {
