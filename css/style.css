@@ -1,49 +1,94 @@
 html,body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
+
+#toast {
+  position: fixed;
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2em;
+  background-color: rgba(128, 128, 128, 192);
+  box-sizing: border-box;
+  padding: .25em 1em;
+  color: white;
+  opacity: 0.0;
+  border-radius: 3px;
+}
+
+.fadein {
+  animation-duration: 500ms;
+  animation-name: fadein;
+}
+@keyframes fadein {
+  from {
+    opacity: 0.0;
+  }
+  to {
+    opacity: 1.0;
+  }
+}
+
+.fadeout {
+  animation-duration: 500ms;
+  animation-name: fadeout;
+}
+@keyframes fadeout {
+  from {
+    opacity: 1.0;
+  }
+  to {
+    opacity: 0.0;
+  }
+}
+
 #content {
-    width: 80%;
-    margin: auto;
+  width: 80%;
+  margin: auto;
 }
 
 header h1 {
-    text-align: center;
-    font-size: 1.5em;
+  text-align: center;
+  font-size: 1.5em;
 }
 
 section#inputs {
-    text-align: center;
+  text-align: center;
 }
 section#inputs label {
-    display: inline-block;
-    width: 40%;
-    text-align: left;
+  display: inline-block;
+  width: 40%;
+  text-align: left;
 }
 
 section#password-display * {
-    text-align: center;
+  text-align: center;
 }
 section#password-display ul {
-    padding: 0;
+  padding: 0;
 }
 section#password-display li {
-    border: 1px black solid;
-    margin-top: -1px;
-    word-wrap: break-word;
-    list-style-type: none;
-    cursor: pointer;
+  border: 1px black solid;
+  margin-top: -1px;
+  word-wrap: break-word;
+  list-style-type: none;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 800px) {
-    #content {
-        width: 40%;
-    }
-    #content div {
-        text-align: center;
-    }
+  #toast {
+    width: 30%;
+  }
+  #content {
+    width: 40%;
+  }
+  #content div {
+    text-align: center;
+  }
 
-    header h1 {
-        font-size: 2em;
-    }
+  header h1 {
+    font-size: 2em;
+  }
 }
