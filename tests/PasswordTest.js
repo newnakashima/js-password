@@ -157,7 +157,7 @@ class PasswordTest extends TestCase {
         p.setAllowedSigns('=/');
         const expected = ['=', '/'];
         expected.forEach(e => {
-            this.assertEquals()
+            this.assertEquals(p.allowed_signs.indexOf(e) !== -1, true);
         });
     }
 }
