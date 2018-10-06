@@ -77,6 +77,15 @@ section#password-display li {
   cursor: pointer;
 }
 
+.annotation {
+  width: 90%;
+  margin: auto;
+  color: #4444ee;
+  font-size: .6rem;
+  text-align: left;
+  padding-left: 5%;
+}
+
 @media screen and (min-width: 800px) {
   #toast {
     width: 30%;
@@ -86,6 +95,10 @@ section#password-display li {
   }
   #content div {
     text-align: center;
+  }
+
+  .annotation {
+    width: 70%;
   }
 
   header h1 {
