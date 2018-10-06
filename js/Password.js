@@ -17,6 +17,7 @@ class Password {
         this.num  = num;
 
         this.length = min;
+        this.allowed_signs = [];
     }
 
     gen() {
@@ -67,19 +68,27 @@ class Password {
         return String.fromCharCode(this.randomIndex(CODE.CAP));
     }
 
+    setAllowedSigns(allowed) {
+        this.allowed_signs = allowed.split('');
+    }
+
     signChar() {
-        const parts = [
-            {start: 33,  end:   47 },
-            {start: 58,  end:   64 },
-            {start: 91,  end:   96 },
-            {start: 123, end:   126}
-        ];
         let signs = [];
-        parts.forEach(e => {
-            for(let i = e.start; i <= e.end; i++) {
-                signs.push(String.fromCharCode(i));
-            }
-        });
+        if (this.allowed_signs.length !== 0) {
+            signs = this.allowed_signs;
+        } else {
+            const parts = [
+                {start: 33,  end:   47 },
+                {start: 58,  end:   64 },
+                {start: 91,  end:   96 },
+                {start: 123, end:   126}
+            ];
+            parts.forEach(e => {
+                for(let i = e.start; i <= e.end; i++) {
+                    signs.push(String.fromCharCode(i));
+                }
+            });
+        }
         let picked = signs[this.randomIndex({start: 0, end: signs.length - 1})];
         return picked;
     }

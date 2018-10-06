@@ -3,9 +3,11 @@
 var Password = require('./Password.js');
 
 let p = new Password();
+let form_valid = true;
 
 const generate_button = document.getElementById('generate-button');
 generate_button.addEventListener('click', () => {
+    if (!form_valid) return;
     const new_password = document.createElement('li');
     let result = p.gen();
     if (result.success) {
@@ -31,28 +33,29 @@ function password_click(e) {
     } else {
         text = 'コピーに失敗しました。';
     }
-    let toast = document.getElementById('toast');
-    toast.innerText = text;
-    show_toast(toast);
+    show_toast(text);
     selection.removeAllRanges();
 }
 
 var showing_toast = false;
-function show_toast(elm) {
+function show_toast(text) {
+    let toast = document.getElementById('toast');
+    toast.innerText = text;
     if (showing_toast) {
         return;
     }
     showing_toast = true;
-    elm.classList.remove('fadeout');
-    elm.classList.add('fadein');
-    elm.style.opacity = '1.0';
-    setTimeout(() => hide_toast(elm), 2000);
+    toast.classList.remove('fadeout');
+    toast.classList.add('fadein');
+    toast.style.opacity = '1.0';
+    setTimeout(() => hide_toast(), 2000);
 }
 
-function hide_toast(elm) {
-    elm.classList.remove('fadein');
-    elm.classList.add('fadeout');
-    elm.style.opacity = '0.0';
+function hide_toast() {
+    let toast = document.getElementById('toast');
+    toast.classList.remove('fadein');
+    toast.classList.add('fadeout');
+    toast.style.opacity = '0.0';
     showing_toast = false;
 }
 
@@ -68,3 +71,31 @@ erase_button.addEventListener('click', () => {
     });
 });
 
+const allowed_signs = document.getElementById('allowed-signs');
+allowed_signs.addEventListener('keyup', e => {
+    if (e.target.value.length === 0 || validate_signs(e.target.value)) {
+        p.setAllowedSigns(e.target.value);
+        form_valid = true;
+        allowed_signs_error(false);
+    } else {
+        show_toast('記号だけを入力して下さい');
+        form_valid = false;
+        allowed_signs_error(true);
+    }
+});
+
+function validate_signs(value) {
+    return value.match(/[^!"#$%&'()*+,\-./:;<=>?@\[\\\]\^_`\{\|\}~]/) === null;
+}
+
+function allowed_signs_error(error) {
+    let allowed_signs_input = document.getElementById('allowed-signs');
+    let allowed_signs_label = document.querySelector('label[for="allowed-signs"]');
+    if (error) {
+        allowed_signs_input.classList.add('error');
+        allowed_signs_label.classList.add('error-label')
+    } else {
+        allowed_signs_input.classList.remove('error');
+        allowed_signs_label.classList.remove('error-label');
+    }
+}

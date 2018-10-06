@@ -144,6 +144,22 @@ class PasswordTest extends TestCase {
         this.assertEquals(/[0-9]/.test(result), true);
     
     }
+
+    testSetAllowedSigns() {
+        let p = new Password(8,8,0,1,0);
+        p.setAllowedSigns('=');
+        const expected = '=';
+        this.assertEquals(expected, p.signChar());
+    }
+
+    testCreateSignsList() {
+        let p = new Password(8,8,0,1,0);
+        p.setAllowedSigns('=/');
+        const expected = ['=', '/'];
+        expected.forEach(e => {
+            this.assertEquals(p.allowed_signs.indexOf(e) !== -1, true);
+        });
+    }
 }
 module.exports = PasswordTest;
 
