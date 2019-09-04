@@ -24,3 +24,12 @@ $ parcel index.html
 $ npm test
 ```
 
+## Deploy
+
+Enter commands below.
+
+```
+$ firebase login
+$ firebase deploy
+```
+
