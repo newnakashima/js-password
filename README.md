@@ -13,7 +13,7 @@ https://js-password.firebaseapp.com
 
 ```sh
 $ npm install -g parcel-bundler
-$ parcel index.html
+$ parcel --no-hmr index.html
 ```
 
 ブラウザで、`http://localhost:1234`へアクセスします。
