@@ -37,9 +37,13 @@ class Password {
             const num_letters   = this.createLetters(this.num,     () => this.numChar());
             const cat = alpha_letters.concat(cap_letters, sign_letters, num_letters);
             const shuffled = n.array_shuffle(cat);
+
+            // Insert random symbols or numbers between words
+            const withSeparators = this.insertSeparators(shuffled);
+
             return {
                 length:  this.length,
-                text:    shuffled.join(''),
+                text:    withSeparators.join(''),
                 success: true
             };
         } catch (e) {
@@ -50,6 +54,19 @@ class Password {
                 success: false
             };
         }
+    }
+
+    insertSeparators(array) {
+        const separators = this.allowed_signs.length > 0 ? this.allowed_signs : ['-', '_', '!', '@', '#', '$', '%', '^', '&', '*'];
+        const result = [];
+        for (let i = 0; i < array.length; i++) {
+            result.push(array[i]);
+            if (i < array.length - 1) {
+                const randomSeparator = separators[Math.floor(Math.random() * separators.length)];
+                result.push(randomSeparator);
+            }
+        }
+        return result;
     }
 
     createLetters(length, func) {
