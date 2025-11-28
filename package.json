@@ -23,9 +23,7 @@
   },
   "homepage": "https://github.com/newnakashima/js-password#readme",
   "devDependencies": {
-    "http-server": "^14.1.1"
-  },
-  "dependencies": {
+    "http-server": "^14.1.1",
     "parcel": "^2.16.1"
   }
 }
