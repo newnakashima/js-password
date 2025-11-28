@@ -57,7 +57,9 @@ class Password {
     }
 
     insertSeparators(array) {
-        const separators = this.allowed_signs.length > 0 ? this.allowed_signs : ['-', '_', '!', '@', '#', '$', '%', '^', '&', '*'];
+        // Use dedicated separator characters that don't depend on allowed_signs
+        const defaultSeparators = ['-', '_', '!', '@', '#', '$', '%', '^', '&', '*'];
+        const separators = defaultSeparators;
         const result = [];
         for (let i = 0; i < array.length; i++) {
             result.push(array[i]);
