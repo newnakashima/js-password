@@ -39,11 +39,12 @@ class Password {
             const shuffled = n.array_shuffle(cat);
 
             // Insert random symbols or numbers between words
+            // TODO: UI が無い。テストが無い。文字数が変わってしまう。
             const withSeparators = this.insertSeparators(shuffled);
 
             return {
                 length:  this.length,
-                text:    withSeparators.join(''),
+                text:    shuffled.join(''),
                 success: true
             };
         } catch (e) {
